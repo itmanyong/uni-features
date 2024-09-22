@@ -1,19 +1,15 @@
 <route lang="json5">
 {
-    layout:'basic',
-    style:{
-        navigationBarTitleText:'账户'
-    }
+  layout: "basic",
+  style: {
+    navigationBarTitleText: "账户",
+  },
 }
 </route>
 <template>
-    <view>
-
-    </view>
+  <view> </view>
 </template>
 
-<script setup>
-
-</script>
+<script setup></script>
 
 <style lang="scss" scoped></style>

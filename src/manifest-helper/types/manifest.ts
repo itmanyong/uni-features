@@ -1,42 +1,41 @@
-export interface UniManifestNetworkTimeout extends Record<string, any> {
+export interface UniManifestNetworkTimeout extends OvjectType {
   request?: number;
   connectSocket?: number;
   uploadFile?: number;
   downloadFile?: number;
 }
-export interface UniManifestUniStatistics extends Record<string, any> {
+export interface UniManifestUniStatistics extends OvjectType {
   enable?: boolean;
 }
-export interface UniManifestAppModule extends Record<string, any> {
-  Bluetooth?: Record<string, any>;
-  Contacts?: Record<string, any>;
-  Fingerprint?: Record<string, any>;
-  iBeacon?: Record<string, any>;
-  LivePusher?: Record<string, any>;
-  Map?: Record<string, any>;
-  Messaging?: Record<string, any>;
-  OAuth?: Record<string, any>;
-  Paymen?: Record<string, any>;
-  Push?: Record<string, any>;
-  Share?: Record<string, any>;
-  Speech?: Record<string, any>;
-  SQLite?: Record<string, any>;
-  Statistic?: Record<string, any>;
-  VideoPlayer?: Record<string, any>;
+export interface UniManifestAppModule extends OvjectType {
+  Bluetooth?: OvjectType;
+  Contacts?: OvjectType;
+  Fingerprint?: OvjectType;
+  iBeacon?: OvjectType;
+  LivePusher?: OvjectType;
+  Map?: OvjectType;
+  Messaging?: OvjectType;
+  OAuth?: OvjectType;
+  Paymen?: OvjectType;
+  Push?: OvjectType;
+  Share?: OvjectType;
+  Speech?: OvjectType;
+  SQLite?: OvjectType;
+  Statistic?: OvjectType;
+  VideoPlayer?: OvjectType;
 }
-export interface UniManifestDistribute extends Record<string, any> {
-  android?: Record<string, any>;
-  ios?: Record<string, any>;
-  sdkConfigs?: Record<string, any>;
+export interface UniManifestDistribute extends OvjectType {
+  android?: OvjectType;
+  ios?: OvjectType;
+  sdkConfigs?: OvjectType;
   orientation?: [];
 }
-export interface UniManifestAppPlusSplashscreen extends Record<string, any> {
+export interface UniManifestAppPlusSplashscreen extends OvjectType {
   alwaysShowBeforeRender?: boolean;
   autoclose?: boolean;
   waiting?: boolean;
-  delay?: number;
 }
-export interface UniManifestAppPlus extends Record<string, any> {
+export interface UniManifestAppPlus extends OvjectType {
   splashscreen?: UniManifestAppPlusSplashscreen;
   screenOrientation?: Array<
     | "portrait-primary"
@@ -55,34 +54,34 @@ export interface UniManifestAppPlus extends Record<string, any> {
   };
   optimization?: { subPackages?: boolean };
   runmode?: string | "normal" | "liberate";
-  uniStatistics?: Record<string, any>;
-  webView?: Record<string, any>;
+  uniStatistics?: OvjectType;
+  webView?: OvjectType;
 }
-export interface UniManifestH5 extends Record<string, any> {
+export interface UniManifestH5 extends OvjectType {
   title?: string;
   templte?: string;
-  router?: Record<string, any>;
-  async?: Record<string, any>;
-  devServer?: Record<string, any>;
+  router?: OvjectType;
+  async?: OvjectType;
+  devServer?: OvjectType;
   publicPath?: string;
   sdkConfigs?: string;
-  optimization?: Record<string, any>;
-  uniStatistics?: Record<string, any>;
+  optimization?: OvjectType;
+  uniStatistics?: OvjectType;
 }
-export interface UniManifestQuickapp extends Record<string, any> {}
-export interface UniManifestMpWeixin extends Record<string, any> {
+export interface UniManifestQuickapp extends OvjectType {}
+export interface UniManifestMpWeixin extends OvjectType {
   appid?: string;
-  setting?: Record<string, any>;
+  setting?: OvjectType;
   functionalPages?: boolean;
   requiredBackgroundModes?: Array<string>;
-  plugins?: Record<string, any>;
+  plugins?: OvjectType;
   resizable?: boolean;
   navigateToMiniProgramAppIdList?: Array<string>;
-  permission?: Record<string, any>;
+  permission?: OvjectType;
   workers?: string;
-  optimization?: Record<string, any>;
+  optimization?: OvjectType;
   cloudfunctionRoot?: string;
-  uniStatistics?: Record<string, any>;
+  uniStatistics?: OvjectType;
   scopedSlotsCompiler?: string;
   mergeVirtualHostAttributes?: boolean;
   slotMultipleInstance?: boolean;
@@ -90,73 +89,72 @@ export interface UniManifestMpWeixin extends Record<string, any> {
   requiredPrivateInfos?: Array<string>;
   lazyCodeLoading?: string;
 }
-export interface UniManifestMpAlipay extends Record<string, any> {
-  plugins?: Record<string, any>;
+export interface UniManifestMpAlipay extends OvjectType {
+  plugins?: OvjectType;
   component2?: boolean;
   enableAppxNg?: boolean;
   axmlStrictCheck?: boolean;
   enableParallelLoader?: boolean;
   enableDistFileMinify?: boolean;
-  uniStatistics?: Record<string, any>;
+  uniStatistics?: OvjectType;
   scopedSlotsCompiler?: string;
   mergeVirtualHostAttributes?: boolean;
   slotMultipleInstance?: boolean;
   lazyCodeLoading?: string;
   styleIsolation?: string;
 }
-export interface UniManifestMpBaidu extends Record<string, any> {
+export interface UniManifestMpBaidu extends OvjectType {
   appid?: string;
   requiredBackgroundModes?: Array<string>;
   prefetches?: Array<string>;
-  optimization?: Record<string, any>;
-  uniStatistics?: Record<string, any>;
+  optimization?: OvjectType;
+  uniStatistics?: OvjectType;
   scopedSlotsCompiler?: string;
   slotMultipleInstance?: boolean;
-  dynamicLib?: Record<string, any>;
+  dynamicLib?: OvjectType;
 }
-export interface UniManifestMpToutiao extends Record<string, any> {
+export interface UniManifestMpToutiao extends OvjectType {
   appid?: string;
-  setting?: Record<string, any>;
+  setting?: OvjectType;
   navigateToMiniProgramAppIdList?: Array<string>;
-  uniStatistics?: Record<string, any>;
+  uniStatistics?: OvjectType;
   scopedSlotsCompiler?: string;
   slotMultipleInstance?: boolean;
 }
-export interface UniManifestMpLark extends Record<string, any> {
+export interface UniManifestMpLark extends OvjectType {
   appid?: string;
-  setting?: Record<string, any>;
+  setting?: OvjectType;
   navigateToMiniProgramAppIdList?: Array<string>;
-  uniStatistics?: Record<string, any>;
+  uniStatistics?: OvjectType;
   scopedSlotsCompiler?: string;
   slotMultipleInstance?: boolean;
 }
-export interface UniManifestMpQq extends Record<string, any> {
+export interface UniManifestMpQq extends OvjectType {
   appid?: string;
   requiredBackgroundModes?: Array<string>;
   navigateToMiniProgramAppIdList?: Array<string>;
-  permission?: Record<string, any>;
+  permission?: OvjectType;
   workers?: string;
   groupIdList?: Array<string>;
-  optimization?: Record<string, any>;
-  uniStatistics?: Record<string, any>;
+  optimization?: OvjectType;
+  uniStatistics?: OvjectType;
   scopedSlotsCompiler?: string;
   slotMultipleInstance?: boolean;
 }
-export interface UniManifestMpKuaishou extends Record<string, any> {
+export interface UniManifestMpKuaishou extends OvjectType {
   appid?: string;
-  optimization?: Record<string, any>;
-  uniStatistics?: Record<string, any>;
+  optimization?: OvjectType;
+  uniStatistics?: OvjectType;
   scopedSlotsCompiler?: string;
   slotMultipleInstance?: boolean;
 }
-export interface UniManifestHelperConfig extends Record<string, any> {
+export interface UniManifestHelperConfig extends OvjectType {
   name: string;
   appid: string;
   description?: string;
   locale?: string | "auto";
   versionName: string;
-  versionCode: number;
-  transformPx?: boolean;
+  versionCode: string;
   networkTimeout?: UniManifestNetworkTimeout;
   debug?: boolean;
   uniStatistics?: UniManifestUniStatistics;

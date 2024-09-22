@@ -6,12 +6,20 @@ export const PLUGIN_NAME = `uni-helper:${PKG_NAME}`;
 export const PLUGIN_OPTIONS_DEFAULT: ManifestHelperOptions = {
   logLevel: "info",
   root: process.env.VITE_ROOT_DIR || process.cwd(),
-  writeMode: "override",
   configDir: "./",
   outDir: "src",
-  exclude: ["**/components/**", "**/helpers/**", "**/hooks/**"],
-  onManifestBefore: null,
-  onManifestAfter: null,
+  include: ["env","env/**/*", ".env*","**/manifest.config.*"],
+  exclude: [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/public/**",
+    "**/components/**",
+    "**/helpers/**",
+    "**/hooks/**",
+  ],
+  onManifestBefore: undefined,
+  onManifestAfter: undefined,
 };
 
 export const MANIFEST_CONFIG_DEFAULT: UniManifestHelperConfig = {
@@ -19,8 +27,7 @@ export const MANIFEST_CONFIG_DEFAULT: UniManifestHelperConfig = {
   appid: "",
   description: "",
   versionName: "0.0.1",
-  versionCode: 1,
-  transformPx: false,
+  versionCode: "001",
   "app-plus": {
     usingComponents: true,
     nvueStyleCompiler: "uni-app",
@@ -29,7 +36,6 @@ export const MANIFEST_CONFIG_DEFAULT: UniManifestHelperConfig = {
       alwaysShowBeforeRender: true,
       waiting: true,
       autoclose: true,
-      delay: 0,
     },
     modules: {},
     distribute: {

@@ -1,0 +1,13 @@
+{
+  "pages": [
+    {
+      "layout": "basic",
+      "style": {
+        "navigationBarTitleText": "主页"
+      },
+      "type": "page",
+      "path": "pages/index/index"
+    }
+  ],
+  "subPackages": []
+}

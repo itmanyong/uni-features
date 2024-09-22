@@ -13,7 +13,9 @@ import type {
 } from "./types";
 export * from "./types";
 
-export function UniManifestHelper(userOptions?: ManifestHelperOptions): Plugin {
+export function UniManifestHelper(
+  userOptions?: Partial<ManifestHelperOptions>
+): Plugin {
   const virtualModuleId = `virtual:${PLUGIN_NAME}`;
   const resolvedVirtualModuleId = `\0${virtualModuleId}`;
   const options = Object.assign(
@@ -26,7 +28,7 @@ export function UniManifestHelper(userOptions?: ManifestHelperOptions): Plugin {
     name: PLUGIN_NAME,
     enforce: "pre",
     async configResolved() {
-      await ctx.writeManifestJson();
+      await ctx.loadManifestConfig();
       ctx.initWatcher();
     },
     resolveId(id) {

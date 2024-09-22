@@ -13,7 +13,18 @@ import { pathExistsSync, readFileSync, writeJSONSync } from "fs-extra";
 import type { FSWatcher } from "chokidar";
 import chokidar from "chokidar";
 import json5 from "json5";
-import { merge } from "lodash-es";
+import { merge, cloneDeep, isEqual } from "lodash-es";
+import { loadConfig } from "unconfig";
+
+const manifestConfigFileExtensions = [
+  "ts",
+  "mts",
+  "cts",
+  "js",
+  "mjs",
+  "cjs",
+  "json",
+];
 
 class ManifestHelper implements ManifestHelperContext {
   rootPath: string;
@@ -31,65 +42,81 @@ class ManifestHelper implements ManifestHelperContext {
     this.logger = createLoggerHelper(PKG_NAME, options.logLevel);
     this.filter = createFilter(options.include, options.exclude);
     this.outManifestPath = resolveRoot(options.outDir, "manifest.json");
-    this.manifestConfigDirPath = resolveRoot(options.configDir, "pages.config");
-    this.init()
+    this.manifestConfigDirPath = resolveRoot(
+      options.configDir,
+      "manifest.config"
+    );
+    this.init();
   }
 
-  getManifestConfig(isInit = false): UniManifestHelperConfig {
-    let manifestConfig = merge(
-      { ...MANIFEST_CONFIG_DEFAULT },
-      this.manifestConfigFileConfig
-    );
-    if (!isInit) {
-      let oldPagesConfig = {};
-      if (pathExistsSync(this.outManifestPath)) {
-        oldPagesConfig = json5.parse(
-          readFileSync(this.outManifestPath, { encoding: "utf-8" })
-        );
-      }
-      if (this.options.writeMode === "merge") {
-        manifestConfig = merge(
-          oldPagesConfig,
-          manifestConfig
-        ) as UniManifestHelperConfig;
-      }
+  async loadManifestConfig() {
+    const loadConfigSource = {
+      files: this.manifestConfigDirPath,
+      extensions: manifestConfigFileExtensions,
+    };
+    const { config } = await loadConfig<UniManifestHelperConfig>({
+      sources: [loadConfigSource],
+    });
+    if (!isEqual(this.manifestConfigFileConfig, config)) {
+      this.manifestConfigFileConfig = config;
+      this.writeManifestJson();
     }
-    return manifestConfig as UniManifestHelperConfig;
+  }
+
+  getManifestConfig(): UniManifestHelperConfig {
+    return merge(
+      cloneDeep(MANIFEST_CONFIG_DEFAULT),
+      this.manifestConfigFileConfig
+    ) as UniManifestHelperConfig;
   }
 
   writeManifestJson(isInit = false) {
-    const manifestConfig = this.getManifestConfig(isInit);
+    if (!isInit) {
+      this.logger.info("manifest.json 开始生成");
+      if (
+        this.options.onManifestBefore &&
+        this.options.onManifestBefore(this) === false
+      )
+        return;
+    }
+    const manifestConfig = this.getManifestConfig();
     writeJSONSync(this.outManifestPath, manifestConfig, { spaces: 2 });
-  }
-  init() {
-    if (!pathExistsSync(this.outManifestPath)) {
-      this.logger.warn("manifest.json 文件不存在 正在自动生成... ");
-      this.writeManifestJson(true);
-      this.logger.warn("manifest.json 文件生成成功");
+    if (!isInit) {
+      this.logger.info("manifest.json 生成完成");
+      if (
+        this.options.onManifestAfter &&
+        this.options.onManifestAfter(this) === false
+      )
+        return;
     }
   }
 
   initWatcher() {
-    this.watcher = chokidar.watch("./", {
+    this.watcher = chokidar.watch(".", {
       cwd: this.rootPath,
       persistent: true,
-      ignoreInitial: true,
-      depth: Number.POSITIVE_INFINITY,
-      ignored: (filePath: string) => {
-        if (filePath.startsWith(".env.")) return false;
-        if (filePath.endsWith("manifest.json")) return false;
-        if (filePath.includes("manifest.config.")) return false;
-        return true;
+      depth: 3,
+      ignored: (path) => {
+        if (path === this.rootPath) return false;
+        return !this.filter(path);
       },
     });
-    const fileCallback = () => this.writeManifestJson();
-    this.watcher.on("add", fileCallback.bind(this));
-    this.watcher.on("change", fileCallback.bind(this));
-    this.watcher.on("unlink", fileCallback.bind(this));
+    const fileCallback = () => {
+      this.loadManifestConfig();
+    };
+    this.watcher.on("ready", () => {
+      this.watcher.on("add", fileCallback.bind(this));
+      this.watcher.on("change", fileCallback.bind(this));
+      this.watcher.on("unlink", fileCallback.bind(this));
+    });
   }
 
   getVirtualModuleContext() {
-    return JSON.stringify(this.getManifestConfig(false));
+    return JSON.stringify(this.getManifestConfig());
+  }
+
+  init() {
+    this.writeManifestJson(true);
   }
 }
 

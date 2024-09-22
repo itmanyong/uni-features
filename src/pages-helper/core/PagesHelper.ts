@@ -14,10 +14,9 @@ import { async as globAsync } from "fast-glob";
 import type { FSWatcher } from "chokidar";
 import chokidar from "chokidar";
 import { pathExistsSync, readFileSync, writeJSONSync } from "fs-extra";
-// import { parse as VueParser } from "@vue/compiler-sfc";
+import { parse as VueParser } from "@vue/compiler-sfc";
 import json5 from "json5";
 import { merge } from "lodash-es";
-const VueParser=()=>{}
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 interface PagesHelperPagesItem extends Record<string, any> {
