@@ -1,6 +1,6 @@
 {
   "name": "uni-features",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "uni-app开发辅助工具包",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -13,12 +13,12 @@
   "exports": {
     ".": {
       "require": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
       },
       "import": {
-        "types": "./dist/index.d.mts",
-        "default": "./dist/index.mjs"
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
       }
     }
   },
@@ -68,7 +68,7 @@
     "@types/node": "^22.5.5",
     "@vue/compiler-sfc": "^3.5.8",
     "@types/json5": "^2.2.0",
-    "lib-features": "^0.0.5",
+    "lib-features": "^0.0.6",
     "tsx": "^4.19.1",
     "vite": "^5.4.7"
   }
