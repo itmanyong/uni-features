@@ -1,0 +1,75 @@
+{
+  "name": "uni-features",
+  "version": "0.0.1",
+  "description": "uni-app开发辅助工具包",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uni-features/repo.git"
+  },
+  "exports": {
+    ".": {
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "play": "tsx src/index.ts",
+    "release": "bumpp --commit --push --tag && pnpm publish"
+  },
+  "keywords": [
+    "lib",
+    "tool",
+    "node",
+    "utils"
+  ],
+  "author": {
+    "name": "itmanyong",
+    "email": "itmanyong@gmail.com",
+    "url": "https://github.com/itmanyong"
+  },
+  "bugs": {
+    "email": "itmanyong@gmail.com",
+    "url": "https://github.com/itmanyong/uni-features/issues"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "chokidar": "^4.0.0",
+    "fast-glob": "^3.3.2",
+    "fs-extra": "^11.2.0",
+    "json5": "^2.2.3",
+    "lodash-es": "^4.17.21",
+    "unconfig": "^0.5.5"
+  },
+  "volta": {
+    "node": "20.16.0"
+  },
+  "dependencies": {
+    "@biomejs/biome": "^1.9.2",
+    "bumpp": "^9.5.2",
+    "typescript": "^5.6.2",
+    "tsup": "^8.3.0",
+    "mkdist": "^1.5.9",
+    "terser": "^5.33.0",
+    "@types/node": "^22.5.5",
+    "@vue/compiler-sfc": "^3.5.8",
+    "@types/json5": "^2.2.0",
+    "lib-features": "^0.0.5",
+    "tsx": "^4.19.1",
+    "vite": "^5.4.7"
+  }
+}

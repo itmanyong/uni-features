@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "baseUrl": "/",
+    "strict": false,
+    "target": "ESNext",
+    "module": "ESNext",
+    "declaration": true,
+    "moduleResolution": "Bundler",
+    "emitDeclarationOnly": true, // 只输出声明文件
+    "skipLibCheck": true, // 跳过包检查
+    "types": ["node", "json5"], // 引入包类型
+    "isolatedModules": true, // 孤立模块，把所有文件当做模块处理，避免书写 esbuild 转译不支持的特性
+    "esModuleInterop": true, // 更好的包兼容
+    "forceConsistentCasingInFileNames": true, // 区分文件名大小写
+    "paths": {
+      "@/*": ["src/*"] // 路径别名
+    }
+  },
+  "include": ["src/**/*.*"]
+}
