@@ -32,6 +32,7 @@ class ManifestHelper implements ManifestHelperContext {
     this.filter = createFilter(options.include, options.exclude);
     this.outManifestPath = resolveRoot(options.outDir, "manifest.json");
     this.manifestConfigDirPath = resolveRoot(options.configDir, "pages.config");
+    this.init()
   }
 
   getManifestConfig(isInit = false): UniManifestHelperConfig {
@@ -40,9 +41,12 @@ class ManifestHelper implements ManifestHelperContext {
       this.manifestConfigFileConfig
     );
     if (!isInit) {
-      const oldPagesConfig = json5.parse(
-        readFileSync(this.outManifestPath, { encoding: "utf-8" })
-      );
+      let oldPagesConfig = {};
+      if (pathExistsSync(this.outManifestPath)) {
+        oldPagesConfig = json5.parse(
+          readFileSync(this.outManifestPath, { encoding: "utf-8" })
+        );
+      }
       if (this.options.writeMode === "merge") {
         manifestConfig = merge(
           oldPagesConfig,
