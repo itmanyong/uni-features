@@ -1,6 +1,6 @@
 {
   "name": "uni-features",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "uni-app开发辅助工具包",
   "type": "module",
   "main": "./dist/index.cjs",
