@@ -24,8 +24,8 @@ importers:
         specifier: ^9.5.2
         version: 9.5.2
       lib-features:
-        specifier: ^0.0.5
-        version: 0.0.5(rollup@4.22.4)
+        specifier: ^0.0.6
+        version: 0.0.6(rollup@4.22.4)
       mkdist:
         specifier: ^1.5.9
         version: 1.5.9(typescript@5.6.2)
@@ -994,8 +994,8 @@ packages:
     resolution: {integrity: sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==}
     engines: {node: '>=6'}
 
-  lib-features@0.0.5:
-    resolution: {integrity: sha512-/KyWbs6Gkfi1ZAn7uqB6RAFC+hIQRsOr4doPus1eA5Wodn0KlLDMy6KxI6D7ZZzMNKzxVTgT/wUjEF2Rkq7IPg==}
+  lib-features@0.0.6:
+    resolution: {integrity: sha512-KbXBMsXE8ABbmSCOUDwhob+0J2EgZ5gyZ0/1GBY1COgxiTxOdetjkwrdQV6lZer/P06s4VqKmh3ldwR3/JAI+g==}
 
   lilconfig@3.1.2:
     resolution: {integrity: sha512-eop+wDAvpItUys0FWkHIKeC9ybYrTGbU41U5K7+bttZZeohvnY7M9dZ5kB21GNWiFT2q1OoPTvncPCgSOVO5ow==}
@@ -2480,7 +2480,7 @@ snapshots:
 
   kleur@3.0.3: {}
 
-  lib-features@0.0.5(rollup@4.22.4):
+  lib-features@0.0.6(rollup@4.22.4):
     dependencies:
       '@rollup/pluginutils': 5.1.0(rollup@4.22.4)
       tsx: 4.19.1
